@@ -1,0 +1,29 @@
+# Node
+node_modules/
+.cache/
+
+# Generated Node.js project that is packaged into the APK
+app/src/main/assets/nodejs-project/
+
+# Node.js Mobile native library (downloaded by `npm run prepare-libnode`)
+app/libnode/
+
+# Android / Gradle
+.gradle/
+build/
+**/build/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Release signing
+*.jks
+*.keystore
+keystore.properties
+
+# OS files
+.DS_Store
+Thumbs.db

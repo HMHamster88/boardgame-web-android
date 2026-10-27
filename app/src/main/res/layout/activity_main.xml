@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true">
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background" />
+
+    <LinearLayout
+        android:id="@+id/floating_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/console_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_refresh_button"
+            android:contentDescription="@string/server_console"
+            android:elevation="6dp"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_terminal" />
+
+        <ImageButton
+            android:id="@+id/refresh_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_refresh_button"
+            android:contentDescription="@string/refresh_page"
+            android:elevation="6dp"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:padding="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_refresh" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/status_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/app_primary" />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/app_text"
+            android:textSize="16sp"
+            android:text="@string/status_starting" />
+
+        <TextView
+            android:id="@+id/status_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/app_text_secondary"
+            android:textSize="14sp"
+            android:text="@string/status_first_launch" />
+
+        <Button
+            android:id="@+id/retry_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:minWidth="120dp"
+            android:text="@string/retry"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</FrameLayout>

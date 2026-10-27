@@ -1,0 +1,107 @@
+plugins {
+    id 'com.android.application'
+}
+
+def isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
+
+android {
+    namespace 'com.hmhamster.boardgameweb'
+    compileSdk 35
+    ndkVersion '26.1.10909125'
+
+    defaultConfig {
+        applicationId 'com.hmhamster.boardgameweb'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+
+        ndk {
+            // Node.js Mobile ships prebuilt binaries for these ABIs only.
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+        }
+
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++17'
+                arguments '-DANDROID_STL=c++_shared'
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+            version '3.22.1'
+        }
+    }
+
+    sourceSets {
+        main {
+            // Prebuilt libnode.so downloaded by `npm run prepare-libnode`.
+            jniLibs.srcDirs 'libnode/bin'
+        }
+    }
+
+    // The app is a single-purpose local WebView wrapper.
+    buildFeatures {
+        buildConfig false
+    }
+}
+
+dependencies {
+    // Intentionally no AndroidX dependencies: the app only needs the platform
+    // WebView and the Node.js Mobile JNI bridge.
+}
+
+tasks.register('prepareNodeProject', Exec) {
+    description = 'Builds the boardgame-web-ts launcher and copies the Node.js project into assets.'
+    group = 'boardgame'
+
+    workingDir rootProject.projectDir
+    commandLine(isWindows
+        ? ['cmd', '/c', 'npm', 'run', 'prepare-node-project']
+        : ['npm', 'run', 'prepare-node-project'])
+
+    inputs.dir file("${rootProject.projectDir}/node-project")
+    inputs.file file("${rootProject.projectDir}/scripts/prepare-node-project.mjs")
+    outputs.dir file("${projectDir}/src/main/assets/nodejs-project")
+    outputs.upToDateWhen { false }
+}
+
+tasks.register('prepareLibnode', Exec) {
+    description = 'Downloads the Node.js Mobile libnode.so binaries and headers.'
+    group = 'boardgame'
+
+    workingDir rootProject.projectDir
+    commandLine(isWindows
+        ? ['cmd', '/c', 'npm', 'run', 'prepare-libnode']
+        : ['npm', 'run', 'prepare-libnode'])
+
+    outputs.dir file("${projectDir}/libnode")
+    outputs.upToDateWhen {
+        file("${projectDir}/libnode/include/node/node.h").exists()
+            && ['arm64-v8a', 'armeabi-v7a', 'x86_64'].every { abi ->
+                file("${projectDir}/libnode/bin/${abi}/libnode.so").exists()
+            }
+    }
+}
+
+tasks.named('preBuild').configure {
+    dependsOn 'prepareNodeProject', 'prepareLibnode'
+}

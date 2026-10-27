@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="android:statusBarColor">@color/app_background</item>
+        <item name="android:navigationBarColor">@color/app_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:colorAccent">@color/app_primary</item>
+        <item name="android:colorPrimary">@color/app_primary</item>
+        <item name="android:colorPrimaryDark">@color/app_primary_dark</item>
+        <item name="android:textColorPrimary">@color/app_text</item>
+    </style>
+
+    <style name="ConsoleTheme" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/console_background</item>
+        <item name="android:statusBarColor">@color/console_background</item>
+        <item name="android:navigationBarColor">@color/console_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:colorAccent">@color/console_accent</item>
+        <item name="android:textColorPrimary">@color/console_text</item>
+        <item name="android:textColorHint">@color/console_text_muted</item>
+    </style>
+</resources>

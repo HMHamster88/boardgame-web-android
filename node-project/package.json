@@ -1,0 +1,6 @@
+{
+  "name": "boardgame-web-android-node",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js entry point embedded in the Android app"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "boardgame-web-android",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Android app that runs the boardgame-web-ts launcher using Node.js Mobile",
+  "type": "module",
+  "engines": {
+    "node": ">=18.19.0"
+  },
+  "scripts": {
+    "setup": "npm run prepare-libnode && npm run prepare-node-project",
+    "prepare-libnode": "node scripts/prepare-libnode.mjs",
+    "prepare-node-project": "node scripts/prepare-node-project.mjs",
+    "build:debug": "node scripts/gradle.mjs assembleDebug",
+    "build:release": "node scripts/gradle.mjs assembleRelease",
+    "clean": "node scripts/clean.mjs"
+  },
+  "devDependencies": {
+    "fflate": "^0.8.3",
+    "sql.js": "^1.13.0"
+  }
+}

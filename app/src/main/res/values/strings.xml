@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Boardgame Web</string>
+    <string name="status_starting">Starting the board game server…</string>
+    <string name="status_first_launch">The first launch downloads the latest core module.</string>
+    <string name="status_waiting">Waiting for the server… (%1$ds)</string>
+    <string name="status_loading_ui">Loading the game interface…</string>
+    <string name="status_timeout">The server did not become ready in time. Check your internet connection and the logs, then try again.</string>
+    <string name="status_node_exited">Node.js stopped unexpectedly (exit code %1$d). Check the logs with: adb logcat -s NODEJS-MOBILE BoardgameNode</string>
+    <string name="status_webview_error">Could not load the game interface: %1$s</string>
+    <string name="retry">Retry</string>
+    <string name="refresh_page">Refresh page</string>
+    <string name="server_console">Server console</string>
+    <string name="console_hint">Enter command…</string>
+    <string name="send">Send</string>
+    <string name="clear">Clear</string>
+    <string name="back">Back</string>
+    <string name="server_not_running">Node.js server is not running.</string>
+    <string name="console_node_exited">Node.js exited (code %1$d).</string>
+</resources>
